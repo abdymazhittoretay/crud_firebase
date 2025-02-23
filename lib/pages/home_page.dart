@@ -15,9 +15,37 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
         shape: LinearBorder(),
-        onPressed: () {},
+        onPressed: openDialog,
         child: Icon(Icons.add, size: 30.0, color: Colors.white),
       ),
+    );
+  }
+
+  void openDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          shape: LinearBorder(),
+          title: Text("Add some data:"),
+          content: TextField(),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("Cancel"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("Add"),
+            ),
+          ],
+        );
+      },
     );
   }
 }
