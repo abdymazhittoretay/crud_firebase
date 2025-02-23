@@ -12,6 +12,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        surfaceTintColor: Colors.black,
+        title: Text("CRUD Firebase"),
+        centerTitle: true,
+      ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
         shape: LinearBorder(),
