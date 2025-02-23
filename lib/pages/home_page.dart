@@ -10,6 +10,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.white);
+    return Scaffold(
+      backgroundColor: Colors.white,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black,
+        shape: LinearBorder(),
+        onPressed: () {},
+        child: Icon(Icons.add, size: 30.0, color: Colors.white),
+      ),
+    );
   }
 }
