@@ -38,11 +38,23 @@ class _HomePageState extends State<HomePage> {
                 final String note = data["note"];
                 return ListTile(
                   title: Text(note),
-                  trailing: IconButton(
-                    onPressed: () {
-                      firestoreService.deleteNote(docID);
-                    },
-                    icon: Icon(Icons.delete),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          _controller.text = note;
+                          openDialog(docID: docID);
+                        },
+                        icon: Icon(Icons.edit),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          firestoreService.deleteNote(docID);
+                        },
+                        icon: Icon(Icons.delete),
+                      ),
+                    ],
                   ),
                 );
               },
@@ -61,7 +73,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void openDialog() {
+  void openDialog({String? docID}) {
     showDialog(
       context: context,
       builder: (context) {
@@ -80,11 +92,15 @@ class _HomePageState extends State<HomePage> {
             ),
             TextButton(
               onPressed: () {
-                firestoreService.addNote(_controller.text);
+                if (docID == null) {
+                  firestoreService.addNote(_controller.text);
+                  Navigator.pop(context);
+                }
+                firestoreService.updateNote(_controller.text, docID!);
                 _controller.clear();
                 Navigator.pop(context);
               },
-              child: Text("Add"),
+              child: Text("Add/Update"),
             ),
           ],
         );
